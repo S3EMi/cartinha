@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A letter just for you ♡</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html, body { height:100%; overflow-x:hidden; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(-45deg, #ffeef8, #e0f4ff, #fff3e6, #f4eefd);
+            background-size: 400% 400%;
+            animation: g 20s ease infinite;
+        }
+        @keyframes g { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+
+        /* === CLOSED ENVELOPE === */
+        #closed {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+        .envelope {
+            width: 90vw;
+            max-width: 420px;
+            height: 60vw;
+            max-height: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+        .front, .back {
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #d63031;
+            font-size: clamp(1.8rem, 6vw, 3rem);
+            background: linear-gradient(135deg, #fff1eb, #ffeef8);
+        }
+        .back { transform: rotateY(180deg); }
+        .flap {
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(#fab1c0, #ff758c);
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
+            transform-origin: top;
+            transition: transform 1s cubic-bezier(0.68,-0.55,0.265,1.55);
+        }
+        .seal { font-size: 4rem; animation: p 2s infinite; }
+        @keyframes p { 0%,100%{transform:scale(1)} 50%{transform:scale(1.2)} }
+
+        /* === OPENED FULL LETTER === */
+        #opened {
+            position: fixed;
+            inset: 0;
+            padding: 5vh 4vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease;
+        }
+        #opened.visible { opacity:1; visibility:visible; }
+
+        .letter-card {
+            width: 100%;
+            max-width: 800px;
+            max-height: 95vh;
+            overflow-y: auto;
+            background: rgba(255,255,255,0.97);
+            border-radius: 24px;
+            padding: clamp(30px, 5vw, 60px);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+            text-align: center;
+        }
+        h1 { 
+            font-size: clamp(2.8rem, 8vw, 5rem);
+            color: #e91e63;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle { 
+            font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+            color: #888;
+            margin-bottom: 3vh;
+        }
+        .content {
+            font-size: clamp(1.15rem, 3.8vw, 1.35rem);
+            line-height: 2;
+            text-align: left;
+            background: #fffdf7;
+            padding: clamp(25px, 5vw, 40px);
+            border-radius: 20px;
+            margin: 3vh 0;
+        }
+        .heart { color:#ff4081; }
+        .signature {
+            margin-top: 5vh;
+            font-size: clamp(2.4rem, 7vw, 3.5rem);
+            color: #e91e63;
+            font-style: italic;
+        }
+
+        /* Falling hearts */
+        .fall { position:fixed; pointer-events:none; font-size:2rem; animation: f linear forwards; z-index:1; }
+        @keyframes f { to { transform:translateY(110vh) rotate(360deg); opacity:0; } }
+
+        /* Tiny footer so you know everything fits */
+        .footer { margin-top: 4vh; font-size: 0.9rem; color: #aaa; }
+    </style>
+</head>
+<body>
+
+    <!-- Closed envelope -->
+    <div id="closed">
+        <div class="envelope" id="env">
+            <div class="front">
+                <div class="seal">♡</div>
+                ❤️
+            </div>
+            <div class="flap"></div>
+            <div class="back"></div>
+        </div>
+    </div>
+
+    <!-- Full letter -->
+    <div id="opened">
+        <div class="letter-card">
+            <h1>Oi minha linda ♡</h1>
+            <p class="subtitle">Fiz essa cartinha para o meu amorzinho</p>
+
+            <div class="content">
+                <p>Queria estar ai com você agora, te segurar bem pertinho de mim, te acariciar e te lembrar o quão incrível você é.</p>
+                <p>Até que eu esteja perto de você, nunca se esqueça:<br>
+                Você é <span class="heart">amada</span> exatamente como você é, ate nos dias mais pesados, até quando você está quietinha, até quando você não está com tanta vontade de brilhar.</p>
+                <p>Você é a minha pessoa favorita nesse mundo, como eu digo todos os dias. Eu, assim como muita gente, amamos a sua presença, a sua pessoa. Você é alguém incrível, que merece tudo nessa vida. Esse esforço, essa grandeza, essa coragem que você tem não passa despercebido.</p>
+                <p>Eu te amo demais, meu amor, como sempre amei, para agora e para sempre. Obrigado por tudo que você faz por nós, sou eternamente grato a você, agradeço a Deus e as estrelas no céu.</p>
+                <p>Quando você tiver dúvidas sobre mim, ou sobre a vida, volte e abra essa cartinha novamente.<br>
+                Estarei sempre aqui esperando para te dar o maior abraço que posso enviar sob os quilômetros.</p>
+
+                <p style="text-align:center; margin:40px 0; font-size:1.4em;">
+                    <strong>Espre estarei aqui, amor. ♡</strong>
+                </p>
+
+                <div class="signature">
+                    Para sempre seu,<br>
+                    Matheus
+                </div>
+            </div>
+
+            <div class="footer">Feito com o maior carinho que tenho por você</div>
+        </div>
+    </div>
+
+    <script>
+        const closed = document.getElementById('closed');
+        const opened = document.getElementById('opened');
+        const env = document.getElementById('env');
+
+        closed.addEventListener('click', () => {
+            env.style.transform = 'rotateY(180deg)';
+            env.querySelector('.flap').style.transform = 'rotateX(-180deg)';
+            setTimeout(() => {
+                closed.style.display = 'none';
+                opened.classList.add('visible');
+                startHearts();
+            }, 900);
+        });
+
+        function startHearts() {
+            setInterval(() => {
+                const h = document.createElement('div');
+                h.classList.add('fall');
+                h.innerHTML = Math.random() > 0.4 ? '♡' : '♥';
+                h.style.left = Math.random()*100 + 'vw';
+                h.style.fontSize = (1.5 + Math.random()*1.8) + 'rem';
+                h.style.color = ['#ff6b9d','#ffb3c6','#ff8fab','#feca57','#c56cf0'][Math.floor(Math.random()*5)];
+                h.style.animationDuration = (7 + Math.random()*8) + 's';
+                document.body.appendChild(h);
+                setTimeout(() => h.remove(), 16000);
+            }, 700);
+        }
+    </script>
+</body>
+</html>
